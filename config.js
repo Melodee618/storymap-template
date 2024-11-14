@@ -9,7 +9,7 @@ var config = {
   bookmarks: true,
   chapterReturn: true,
   title: "GIS Data Standardization in Humanitarian Space",
-  logo: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F36752999%3Fv%3D4&f=1&nofb=1&ipt=140ef7809a7d40895db5dda30456f11cf5951d37cf7d4961c54529a264d8647d&ipo=images", // UN OCHA logo
+  logo: "images/husky.jpg",
   subtitle: "Exploring HXL, CODs, and P-codes for Effective Crisis Response",
   byline: "By Kshitij Raj Sharma",
   mobileview:
