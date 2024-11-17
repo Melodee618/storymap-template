@@ -443,7 +443,7 @@
           // add website to chapters if found in config
           if (record.website) {
             var website = document.createElement("p");
-            website.innerHTML = `» ${record.website}`;
+            website.innerHTML = `<a href="${record.website}" target="_blank" style="color: black; text-decoration: underline;">More Info</a>`;
             chapter.appendChild(website);
           }
 
