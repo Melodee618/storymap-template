@@ -12,7 +12,9 @@ var config = {
   logo: "images/kshitij.png",
   subtitle:
     "Data standardization plays a vital role in humanitarian efforts, enabling efficient coordination and accurate information sharing during crises. This story map highlights key standardization tools—HXL, CODs, and P-codes—and their impact on creating a unified data ecosystem to support rapid and reliable crisis response.",
-  byline: "27 Nov , By Kshitij Raj Sharma",
+  byline: "27 November 2024 : Kshitij Raj Sharma",
+  welcomeImage: "images/welcome.gif",
+  creditLogos: ["images/cde.png", "images/uni-logo.png", "images/zgis.png"],
   mobileview:
     '<div id="rotate-mobile"><em>For optimal viewing of this storytelling map on mobile, rotate your device to a horizontal orientation.</em><br><br><img src="images/device.png">',
   footer: "Copyright 2024 @ Kshitij Raj Sharma",
