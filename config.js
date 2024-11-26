@@ -15,7 +15,7 @@ var config = {
   byline: "27 Nov , By Kshitij Raj Sharma",
   mobileview:
     '<div id="rotate-mobile"><em>For optimal viewing of this storytelling map on mobile, rotate your device to a horizontal orientation.</em><br><br><img src="images/device.png">',
-  footer: "Source: source citations, etc., Copyright 2024 @ Kshitij Raj Sharma",
+  footer: "Copyright 2024 @ Kshitij Raj Sharma",
   chapters: [
     {
       id: "introduction",
@@ -39,6 +39,8 @@ var config = {
       callback: "",
       onChapterEnter: [],
       onChapterExit: [],
+
+      descriptionImages: [],
     },
     {
       id: "hxl",
@@ -49,13 +51,27 @@ var config = {
       // caption: "HXL Logo",
       website: "https://hxlstandard.org/",
       description:
-        "<strong>Overview</strong><br>Humanitarian Exchange Language (HXL) is a simple standard for tagging and structuring datasets used by humanitarian organizations. HXL tags data attributes (like organization, location, and population) with a standardized vocabulary, ensuring consistent data formatting and simplifying data sharing and filtering. HXL's lightweight structure makes it easy to implement, even in resource-limited environments.<br><br><strong>Use Case</strong><br>Imagine a major flood displacing thousands of people across multiple regions. Various organizations need to share data on shelters, hospitals, and the displaced population. With HXL tags, datasets from different sources can be aligned quickly. For example:<br>#loc: Location of each shelter or hospital.<br>#org: Organization responsible for managing the facility.<br>#pop: Number of people affected or served.<br><br><strong>Map Content</strong><br>A map overlay shows HXL-tagged data representing key locations such as shelters and hospitals. When users click on a location, they can see HXL-tagged details (e.g., managing organization, capacity, and available resources).",
+        "<strong>Overview:</strong> <br>• Humanitarian Exchange Language (HXL) is a simple standard for tagging and structuring datasets used by humanitarian organizations.<br>• It works with spreadsheet formats like CSV or Excel by adding hashtags with semantic information between headers and data, enabling software to validate, clean, merge, and analyze data.<br>• Example: <br><code>hxl.load('http://example.org/3w.csv', function (dataset) { var region_stats = dataset.count('adm1'); // do something with the stats });</code>.<br><br><strong>Use Case:</strong> <br>• During a major flood displacing thousands, organizations can share data on shelters, hospitals, and populations using HXL tags like <code>#loc</code> (location), <code>#org</code> (organization), and <code>#pop</code> (affected population), enabling quick data alignment across sources.",
+
       location: {
-        center: [35.243322, 38.963745],
+        center: [10.451526, 51.165691],
         zoom: 4,
         pitch: 0,
         bearing: 0,
       },
+      descriptionImages: [
+        "images/hxl_example.png",
+        "images/hxl_chart.png",
+        "images/hxl_method.png",
+        "images/hxl_slider_1.png",
+        "images/hxl_slider_2.png",
+        "images/hxl_slider_3.png",
+        "images/hxl_slider_4.png",
+        "images/hxl_slider_5.png",
+        "images/hxl_slider_6.png",
+        "images/hxl_slider_7.png",
+        "images/hxl_slider_8.png",
+      ],
       mapAnimation: "flyTo",
       rotateAnimation: false,
       spinGlobe: false,
@@ -73,10 +89,10 @@ var config = {
       // caption: "HXL Logo",
       website: "https://cod.unocha.org/",
       description:
-        "<strong>Overview</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution, administrative boundaries, infrastructure, and road networks. They are meticulously verified, making them a reliable foundation for operational planning.<br><br><strong>Use Case</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>Population data to assess affected communities.<br>Administrative boundaries for coordination.<br>Road networks to optimize transportation of supplies.<br><br><strong>Map Content</strong><br>The map displays layers for population density, administrative boundaries, and main roads in a disaster-affected area. Users can interact with each layer to understand how CODs inform decisions on resource allocation, priority regions, and logistical routes.",
+        "<strong>Overview:</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution, administrative boundaries, infrastructure, and road networks. They are often verified and standardized, making them a reliable foundation for operational planning.<br><br><strong>Use Case:</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>• Population data to assess affected communities.<br>• Administrative boundaries for coordination.<br>• Road networks to optimize transportation of supplies.",
       location: {
-        center: [38.963745, 35.243322],
-        zoom: 3,
+        center: [90.356331, 23.684994],
+        zoom: 4,
         pitch: 0,
         bearing: 0,
       },
@@ -84,19 +100,11 @@ var config = {
       rotateAnimation: false,
       spinGlobe: false,
       mapInteractive: true,
+      descriptionImages: ["images/cod.png"],
+
       callback: "",
-      onChapterEnter: [
-        {
-          layer: "cods-layer",
-          opacity: 1,
-        },
-      ],
-      onChapterExit: [
-        {
-          layer: "cods-layer",
-          opacity: 0,
-        },
-      ],
+      onChapterEnter: [],
+      onChapterExit: [],
     },
     {
       id: "pcodes",
@@ -108,10 +116,10 @@ var config = {
       website:
         "https://humanitarian.atlassian.net/wiki/spaces/imtoolbox/pages/222265609/P-codes",
       description:
-        "<strong>Overview</strong><br>P-codes, or Place Codes, are unique identifiers for geographic locations, providing a way to reference specific places consistently across datasets. P-codes make it easy to cross-reference and unify data from multiple sources, helping aid organizations avoid duplication or confusion about location names, which may vary or have multiple spellings.<br><br><strong>Use Case</strong><br>After a cyclone, multiple agencies collect data on relief needs, shelter locations, and health facilities. P-codes allow these datasets to be easily combined and analyzed without confusion over place names. For example, data on shelters can be linked with population data by matching P-codes, enabling a comprehensive view of needs and available resources in each area.<br><br><strong>Map Content</strong><br>A P-code layer shows unique codes for each location (e.g., neighborhoods, shelters, health facilities). When clicking on a P-coded area, users can see linked data, such as population size, available shelters, and local health resources. This illustrates how P-codes help unify datasets for comprehensive planning.",
+        "<strong>Overview:</strong> <br>P-codes (Place codes) are unique geographic identification codes, usually represented by combinations of letters and numbers to identify a specific place, point, positional location, or feature on a map or within a database.<br>There is only one P-code per administrative unit.<br><br><strong>Use Case:</strong> <br>The unique ID can be used to differentiate places with the same name.<br>• P-code and names are used in data collection tools (e.g., 3W, RPM).<br>• Used to amalgamate data from different sources.<br>• Used as a dimension for analysis (e.g., geographic severity, priority, etc.).<br>• Can be applied to other datasets so that their geographic location is known if it is a spatial file.",
       location: {
-        center: [-75.5, 20],
-        zoom: 5,
+        center: [9.081999, 8.675277],
+        zoom: 4,
         pitch: 0,
         bearing: 0,
       },
@@ -119,33 +127,61 @@ var config = {
       rotateAnimation: false,
       spinGlobe: false,
       mapInteractive: true,
+      descriptionImages: ["images/pcode_detail.png"],
+
+      callback: "",
+      onChapterEnter: [],
+      onChapterExit: [],
+    },
+    {
+      id: "hdx",
+      alignment: "left",
+      hidden: false,
+      title: "Humanitarian Data Exchange (HDX)",
+      description:
+        '<iframe width="100%" height="500px" src="https://www.youtube.com/embed/OXNlc0dnvIs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>',
+      // image: "images/hxl_method.png",
+      // caption: "HXL Logo",
+      website: "https://data.humdata.org/",
+      location: {
+        center: [69.345116, 30.375321],
+        zoom: 4,
+        pitch: 0,
+        bearing: 0,
+      },
+      mapAnimation: "flyTo",
+      rotateAnimation: false,
+      spinGlobe: false,
+      mapInteractive: true,
+      descriptionImages: ["images/hdx.png"],
+
       callback: "",
       onChapterEnter: [
         {
-          layer: "pcodes-layer",
+          layer: "case-study-layer",
           opacity: 1,
         },
       ],
       onChapterExit: [
         {
-          layer: "pcodes-layer",
+          layer: "case-study-layer",
           opacity: 0,
         },
       ],
     },
     {
       id: "case-study",
-      alignment: "left",
+      alignment: "right",
       hidden: false,
       title: "Case Study: Palesttine Humanitarian Response",
       // image:"images/",
       image: "images/hxl_method.png",
       // caption: "HXL Logo",
-      website: "https://data.humdata.org/group/pse",
+      // website: "https://data.humdata.org/group/pse",
       description: "TBD",
       location: {
-        center: [-75.5, 20],
-        zoom: 5,
+        center: [-74.297333, 4.570868],
+        zoom: 4,
         pitch: 0,
         bearing: 0,
       },
@@ -153,40 +189,58 @@ var config = {
       rotateAnimation: false,
       spinGlobe: false,
       mapInteractive: true,
+      descriptionImages: ["images/pse.png"],
+
       callback: "",
-      onChapterEnter: [
-        {
-          layer: "case-study-layer",
-          opacity: 1,
-        },
-      ],
-      onChapterExit: [
-        {
-          layer: "case-study-layer",
-          opacity: 0,
-        },
-      ],
+      onChapterEnter: [],
+      onChapterExit: [],
     },
     {
       id: "other-efforts",
-      alignment: "right",
+      alignment: "left",
       hidden: false,
       title: "Other Efforts",
-      image: "images/cod.png",
+      // image: "images/healthsites.png",
       // caption: "HXL Logo",
-      website:
-        "https://humanitarian.atlassian.net/wiki/spaces/imtoolbox/pages/222265609/P-codes",
+      // website: "https://healthsites.io/",
       description:
-        "<strong>INSPIRE Directive (Infrastructure for Spatial Information in the European Community)</strong><br>Features: INSPIRE mandates standardized data themes and specifications (like administrative boundaries, hydrography, and land use), which are critical in large-scale, cross-border disaster scenarios.<br><br><strong>Humanitarian Profile Support Standard (HPSS)</strong><br>Features: HPSS outlines criteria for categories and sub-categories of populations, helping humanitarian organizations maintain consistent definitions and population counts.<br><br><strong>Sphere Standards for Humanitarian Response</strong><br>Features: Sphere provides standardized indicators and minimum data requirements to ensure humanitarian projects meet essential needs. By standardizing what data should be collected and measured, Sphere aids in data compatibility across humanitarian responses.<br><br><strong>UN Global Platform for Data Interoperability</strong><br>Features: The platform provides data interoperability resources, focusing on ethical data use, quality standards, and frameworks for combining data from non-traditional sources (e.g., private sector data).",
+        '<strong>Healthsites.io:</strong><br>Healthsites.io is a collaborative platform that aggregates and shares global healthcare location data, improving data availability for disaster response and public health initiatives. <a href="https://healthsites.io/">Healthsites.io</a><br><br><strong>Humanitarian OpenStreetMap Data Model:</strong><br>The Humanitarian OpenStreetMap Data Model, supported by the Humanitarian OpenStreetMap Team (HOT), provides a framework for  structuring openstreetmap data in multiple gis fileformats and attributes to support humanitarian efforts. <a href="https://data.humdata.org/organization/hot">Humanitarian OpenStreetMap Team</a>.  <br> <strong> and perhaps many more .... </strong> ',
       location: {
-        center: [0, 0],
-        zoom: 2,
+        center: [30.802498, 26.820553],
+        zoom: 4,
         pitch: 0,
         bearing: 0,
       },
       mapAnimation: "flyTo",
+      descriptionImages: ["images/healthsites.png", "images/hotosm_hdx.png"],
+
       rotateAnimation: false,
       spinGlobe: false,
+      mapInteractive: true,
+      callback: "",
+      onChapterEnter: [],
+      onChapterExit: [],
+    },
+    {
+      id: "thanks-block",
+      alignment: "center",
+      hidden: false,
+      // title: "Other Efforts",
+      image: "images/tehe_end.gif",
+      // caption: "HXL Logo",
+      // website: "https://healthsites.io/",
+      description: '<p style="text-align: center;">Questions?</p>',
+      location: {
+        center: [-3.435973, 55.378051],
+        zoom: 4,
+        pitch: 0,
+        bearing: 0,
+      },
+      mapAnimation: "flyTo",
+      descriptionImages: ["images/thanks.png"],
+
+      rotateAnimation: true,
+      spinGlobe: true,
       mapInteractive: true,
       callback: "",
       onChapterEnter: [],

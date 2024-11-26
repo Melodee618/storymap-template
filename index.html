@@ -11,6 +11,35 @@
     <link href="src/maplibre-gl.css" rel="stylesheet" />
     <script src="src/intersection-observer.js"></script>
     <script src="src/scrollama.js"></script>
+    <!-- Slick CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"
+      integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Slick JS -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+    ></script>
+
     <style>
       body {
         margin: 0;
@@ -25,7 +54,7 @@
       }
 
       #map {
-        top: 80px;
+        /* top: 80px; */
         height: 100vh;
         width: 100vw;
         position: fixed;
@@ -99,6 +128,21 @@
       #features {
         padding-top: 10vh;
         padding-bottom: 10vh;
+      }
+
+      .image-slider {
+        padding: 0px !important;
+        margin: 0px !important;
+      }
+
+      .slider {
+        padding: 0px !important;
+        margin: 0px !important;
+      }
+
+      .slick-list {
+        padding: 0px !important;
+        margin: 0px !important;
       }
 
       .fab,
@@ -326,6 +370,56 @@
         .maplibregl-canvas {
         touch-action: unset;
       }
+
+      /* Styling for the timer container */
+      #timer-container {
+        position: fixed;
+        bottom: 2px;
+        right: 2px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Styling for the timer display */
+      #time-display {
+        font-size: 24px;
+        margin-right: 5px;
+        margin-left: 5px;
+      }
+
+      /* Tiny button styling */
+      .timer-button {
+        background-color: transparent;
+        color: white;
+        border: none;
+        padding: 5px 5px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      /* Play button styling */
+      .play-button {
+        color: green;
+      }
+
+      /* Pause button styling */
+      .pause-button {
+        color: red;
+      }
+
+      /* Reset button styling */
+      .reset-button {
+        color: blue;
+      }
+
+      .timer-button:hover {
+        opacity: 0.8;
+      }
     </style>
   </head>
 
@@ -337,6 +431,27 @@
 
     <div id="mapInset"></div>
     <div id="story"></div>
+    <div id="timer-container">
+      <div id="time-display">00:00</div>
+      <button id="play-button" class="timer-button play-button">
+        <i class="fas fa-play"></i>
+      </button>
+      <button
+        id="pause-button"
+        class="timer-button pause-button"
+        style="display: none"
+      >
+        <i class="fas fa-pause"></i>
+      </button>
+      <button
+        id="reset-button"
+        class="timer-button reset-button"
+        style="display: none"
+      >
+        <i class="fas fa-stop"></i>
+      </button>
+    </div>
+
     <script src="./config.js"></script>
     <script src="./sources.js"></script>
     <script>
@@ -472,6 +587,8 @@
           var image = new Image();
           image.src = record.image;
           image.style.maxHeight = "400px"; // Limit height to 250px
+          image.style.maxWidth = "500px"; // Limit height to 250px
+
           image.style.width = "auto"; // Maintain natural width
           image.style.display = "block"; // Makes centering effective
           image.style.margin = "0 auto"; // Centers the image horizontally
@@ -493,21 +610,80 @@
           story.style.textAlign = "justify";
           chapter.appendChild(story);
 
-          // add author to chapters if found in config
           if (record.author) {
-            author = document.createElement("p");
+            var author = document.createElement("p");
             author.innerHTML = "<strong>By " + record.author + "</strong>";
             chapter.appendChild(author);
           }
 
-          // add website to chapters if found in config
           if (record.website) {
             var website = document.createElement("p");
-            website.innerHTML = `<a href="${record.website}" target="_blank" style="color: black; text-decoration: underline;">More Info</a>`;
+
+            // Create the link element
+            var link = document.createElement("a");
+            link.href = record.website;
+            link.target = "_blank";
+            link.innerText = "Source & Info";
+
+            // Create the info icon element
+            var icon = document.createElement("span");
+            icon.innerText = "ℹ️";
+            icon.style.fontSize = "16px";
+            icon.style.marginRight = "5px";
+            icon.style.color = "#888";
+
+            // Append the icon to the link
+            link.insertBefore(icon, link.firstChild);
+
+            // Apply CSS styles to the link
+            link.style.fontSize = "12px";
+            link.style.color = "#888";
+            link.style.textDecoration = "none";
+
+            // Append the link to the paragraph
+            website.appendChild(link);
+            website.style.textAlign = "right";
+
             chapter.appendChild(website);
           }
 
-          // add return to top link to each chapter
+          console.log("test");
+          console.log(record.descriptionImages);
+
+          if (record.descriptionImages && record.descriptionImages.length > 0) {
+            var sliderContainer = document.createElement("div");
+            sliderContainer.setAttribute("class", "image-slider");
+
+            var imageWrapper = document.createElement("div");
+            imageWrapper.setAttribute("class", "slider");
+
+            record.descriptionImages.forEach(function (imageUrl) {
+              var imgElement = document.createElement("img");
+              imgElement.setAttribute("src", imageUrl);
+              imgElement.setAttribute("alt", "Description Image");
+              imgElement.style.width = "100%";
+              imageWrapper.appendChild(imgElement);
+            });
+
+            sliderContainer.appendChild(imageWrapper);
+
+            chapter.appendChild(sliderContainer);
+
+            $(imageWrapper).slick({
+              infinite: true,
+              centerMode: true,
+              centerPadding: "0px",
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              arrows: true,
+              dots: true,
+              fade: true,
+              autoplay: true,
+              autoplaySpeed: 10000,
+              adaptiveHeight: true,
+            });
+          }
+
           if (config.chapterReturn) {
             var returnTop = document.createElement("p");
             returnTop.setAttribute("class", "returntop");
@@ -516,7 +692,6 @@
           }
         }
 
-        // add legend to chapters if found in config
         if (record.legend) {
           var legend = document.createElement("div");
           legend.setAttribute("class", "legend");
@@ -827,6 +1002,76 @@
 
       // setup resize event
       window.addEventListener("resize", scroller.resize);
+    </script>
+    <script>
+      // Timer variables
+      let timerInterval;
+      let seconds = 0;
+      let isRunning = false;
+
+      // Update the time display
+      function updateTimeDisplay() {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        $("#time-display").text(
+          `${String(minutes).padStart(2, "0")}:${String(
+            remainingSeconds
+          ).padStart(2, "0")}`
+        );
+      }
+
+      // Start the timer
+      function startTimer() {
+        isRunning = true;
+        timerInterval = setInterval(() => {
+          seconds++;
+          updateTimeDisplay();
+        }, 1000);
+
+        // Toggle buttons visibility
+        $("#play-button").hide();
+        $("#pause-button").show();
+        $("#reset-button").show();
+      }
+
+      // Pause the timer
+      function pauseTimer() {
+        isRunning = false;
+        clearInterval(timerInterval);
+
+        // Toggle buttons visibility
+        $("#play-button").show();
+        $("#pause-button").hide();
+        $("#reset-button").show();
+      }
+
+      // Reset the timer
+      function resetTimer() {
+        isRunning = false;
+        clearInterval(timerInterval);
+        seconds = 0;
+        updateTimeDisplay();
+
+        // Toggle buttons visibility
+        $("#play-button").show();
+        $("#pause-button").hide();
+        $("#reset-button").hide();
+      }
+
+      // Play button click event
+      $("#play-button").click(function () {
+        startTimer();
+      });
+
+      // Pause button click event
+      $("#pause-button").click(function () {
+        pauseTimer();
+      });
+
+      // Reset button click event
+      $("#reset-button").click(function () {
+        resetTimer();
+      });
     </script>
   </body>
 </html>
