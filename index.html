@@ -228,6 +228,41 @@
       .maplibregl-popup {
         font: 12px/20px "Montserrat", Helvetica, sans-serif;
       }
+      nav {
+        background-color: #f5f5f5;
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav li {
+        margin: 0 20px;
+      }
+
+      nav a {
+        color: #545454 !important;
+        text-decoration: none;
+        font-weight: 500 !important;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+        display: inline-block;
+      }
+
+      nav a.active {
+        color: #06540fc1 !important;
+        font-weight: bold !important;
+        border-bottom: 2px solid #000;
+        padding-bottom: 5px;
+      }
 
       @media (max-width: 750px) {
         #features {
@@ -295,7 +330,11 @@
   </head>
 
   <body>
+    <nav id="main-nav">
+      <ul></ul>
+    </nav>
     <div id="map"></div>
+
     <div id="mapInset"></div>
     <div id="story"></div>
     <script src="./config.js"></script>
@@ -335,6 +374,20 @@
           }
           map.setPaintProperty(layer.layer, prop, layer.opacity, options);
         });
+      }
+
+      function updateActiveNav(chapterId) {
+        const navLinks = document.querySelectorAll("#main-nav a");
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        const activeLink = document.querySelector(
+          `#main-nav a[href="#${chapterId}"]`
+        );
+        if (activeLink) {
+          activeLink.classList.add("active");
+        }
       }
 
       // add navigation control for interactive chapters
@@ -502,6 +555,21 @@
         footerBookmarks.innerHTML = bookmarksText;
         footer.appendChild(footerBookmarks);
       }
+      // Get the navigation container
+      const navContainer = document.getElementById("main-nav");
+      const navList = navContainer.querySelector("ul");
+
+      // Loop through the chapters and add navigation links
+      config.chapters.forEach((chapter) => {
+        if (chapter.title) {
+          const navItem = document.createElement("li");
+          const navLink = document.createElement("a");
+          navLink.href = `#${chapter.id}`;
+          navLink.textContent = chapter.title;
+          navItem.appendChild(navLink);
+          navList.appendChild(navItem);
+        }
+      });
 
       // add prefix content for mobile view
       if (config.mobileview) {
@@ -610,6 +678,7 @@
                 }
               }
             }
+            updateActiveNav(response.element.id);
 
             response.element.classList.add("active");
             map[chapter.mapAnimation || "flyTo"](chapter.location);
