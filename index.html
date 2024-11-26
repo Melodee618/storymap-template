@@ -575,6 +575,7 @@
       if (config.logo) {
         var image = new Image();
         image.src = config.logo;
+        image.style.maxWidth = "150px";
         image.style.maxHeight = "150px";
         header.appendChild(image);
       }
