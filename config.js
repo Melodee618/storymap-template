@@ -6,12 +6,13 @@ var config = {
   legend: false,
   theme: "light",
   useCustomLayers: true,
-  bookmarks: true,
+  bookmarks: false,
   chapterReturn: true,
   title: "GIS Data Standardization in Humanitarian Space",
-  logo: "images/husky.jpg",
-  subtitle: "Exploring HXL, CODs, and P-codes for Effective Crisis Response",
-  byline: "By Kshitij Raj Sharma",
+  logo: "images/kshitij.png",
+  subtitle:
+    "Data standardization plays a vital role in humanitarian efforts, enabling efficient coordination and accurate information sharing during crises. This story map highlights key standardization tools—HXL, CODs, and P-codes—and their impact on creating a unified data ecosystem to support rapid and reliable crisis response.",
+  byline: "27 Nov , By Kshitij Raj Sharma",
   mobileview:
     '<div id="rotate-mobile"><em>For optimal viewing of this storytelling map on mobile, rotate your device to a horizontal orientation.</em><br><br><img src="images/device.png">',
   footer: "Source: source citations, etc., Copyright 2024 @ Kshitij Raj Sharma",
@@ -21,13 +22,13 @@ var config = {
       alignment: "left",
       hidden: false,
       title: "Introduction",
-      image: "images/pse.png",
+      image: "images/why_data_meme.jpg",
 
       description:
-        "Data standardization is essential in the humanitarian field, where rapid response, coordination, and information sharing are paramount. Humanitarian crises often involve multiple agencies working together to deliver aid, where each organization collects and shares data on population distribution, infrastructure, and resources. Without standardization, data incompatibility and misinterpretation can cause delays and errors in delivering aid to affected communities.",
+        "Data standardization is essential in the humanitarian field, where <strong> rapid response</strong>, coordination, and information <strong>sharing</strong> are crucial. Humanitarian crises often involve multiple agencies working together to deliver aid, where each organization collects and shares data on population distribution, infrastructure, and resources. Without standardization, data incompatibility and misinterpretation can cause delays and errors in delivering aid to affected communities.",
       location: {
-        center: [0, 0],
-        zoom: 2,
+        center: [83.96851, 28.26689],
+        zoom: 4,
         pitch: 0,
         bearing: 0,
       },
@@ -50,8 +51,8 @@ var config = {
       description:
         "<strong>Overview</strong><br>Humanitarian Exchange Language (HXL) is a simple standard for tagging and structuring datasets used by humanitarian organizations. HXL tags data attributes (like organization, location, and population) with a standardized vocabulary, ensuring consistent data formatting and simplifying data sharing and filtering. HXL's lightweight structure makes it easy to implement, even in resource-limited environments.<br><br><strong>Use Case</strong><br>Imagine a major flood displacing thousands of people across multiple regions. Various organizations need to share data on shelters, hospitals, and the displaced population. With HXL tags, datasets from different sources can be aligned quickly. For example:<br>#loc: Location of each shelter or hospital.<br>#org: Organization responsible for managing the facility.<br>#pop: Number of people affected or served.<br><br><strong>Map Content</strong><br>A map overlay shows HXL-tagged data representing key locations such as shelters and hospitals. When users click on a location, they can see HXL-tagged details (e.g., managing organization, capacity, and available resources).",
       location: {
-        center: [0, 20],
-        zoom: 2,
+        center: [35.243322, 38.963745],
+        zoom: 4,
         pitch: 0,
         bearing: 0,
       },
@@ -74,7 +75,7 @@ var config = {
       description:
         "<strong>Overview</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution, administrative boundaries, infrastructure, and road networks. They are meticulously verified, making them a reliable foundation for operational planning.<br><br><strong>Use Case</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>Population data to assess affected communities.<br>Administrative boundaries for coordination.<br>Road networks to optimize transportation of supplies.<br><br><strong>Map Content</strong><br>The map displays layers for population density, administrative boundaries, and main roads in a disaster-affected area. Users can interact with each layer to understand how CODs inform decisions on resource allocation, priority regions, and logistical routes.",
       location: {
-        center: [20, 20],
+        center: [38.963745, 35.243322],
         zoom: 3,
         pitch: 0,
         bearing: 0,

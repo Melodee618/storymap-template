@@ -25,7 +25,7 @@
       }
 
       #map {
-        top: 0;
+        top: 80px;
         height: 100vh;
         width: 100vw;
         position: fixed;
@@ -436,11 +436,12 @@
       if (config.logo) {
         var image = new Image();
         image.src = config.logo;
+        image.style.maxHeight = "150px";
         header.appendChild(image);
       }
 
       if (config.subtitle) {
-        var subtitleText = document.createElement("h2");
+        var subtitleText = document.createElement("p");
         subtitleText.innerText = config.subtitle;
         header.appendChild(subtitleText);
       }
@@ -470,6 +471,11 @@
         if (record.image) {
           var image = new Image();
           image.src = record.image;
+          image.style.maxHeight = "400px"; // Limit height to 250px
+          image.style.width = "auto"; // Maintain natural width
+          image.style.display = "block"; // Makes centering effective
+          image.style.margin = "0 auto"; // Centers the image horizontally
+          image.style.objectFit = "contain"; // Ensures the image fits naturally within the container
           chapter.appendChild(image);
         }
 
@@ -484,6 +490,7 @@
         if (record.description) {
           var story = document.createElement("p");
           story.innerHTML = record.description;
+          story.style.textAlign = "justify";
           chapter.appendChild(story);
 
           // add author to chapters if found in config
@@ -593,8 +600,8 @@
       var map = new maplibregl.Map({
         container: "map",
         style: config.style,
-        center: config.chapters[0].location.center,
-        zoom: config.chapters[0].location.zoom,
+        center: [0, 0],
+        zoom: 1,
         bearing: config.chapters[0].location.bearing,
         pitch: config.chapters[0].location.pitch,
         // make storymap partially interactive
@@ -614,7 +621,7 @@
           style: config.style, //hosted style id
           center: config.chapters[0].location.center,
           // Hardcode above center value if you want insetMap to be static.
-          zoom: 3, // starting zoom
+          zoom: 1, // starting zoom
           hash: false,
           interactive: false,
           attributionControl: false,
