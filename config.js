@@ -189,8 +189,8 @@ var config = {
         bearing: 0,
       },
       mapAnimation: "flyTo",
-      rotateAnimation: false,
-      spinGlobe: false,
+      rotateAnimation: true,
+      spinGlobe: true,
       mapInteractive: true,
       descriptionImages: [
         "images/pse.png",
