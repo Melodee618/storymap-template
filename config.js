@@ -20,10 +20,10 @@ var config = {
   footer: "Copyright 2024 @ Kshitij Raj Sharma",
   chapters: [
     {
-      id: "introduction",
+      id: "why",
       alignment: "left",
       hidden: false,
-      title: "Introduction",
+      title: "Why?",
       image: "images/why_data_meme.jpg",
 
       description:
