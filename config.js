@@ -8,7 +8,7 @@ var config = {
   useCustomLayers: true,
   bookmarks: false,
   chapterReturn: true,
-  title: "GIS Data Standardization in Humanitarian Space",
+  title: "Data Standardization in Humanitarian Space",
   logo: "images/kshitij.png",
   subtitle:
     "Data standardization plays a vital role in humanitarian efforts, enabling efficient coordination and accurate information sharing during crises. This story map highlights key standardization tools—HXL, CODs, and P-codes—and their impact on creating a unified data ecosystem to support rapid and reliable crisis response.",
@@ -91,7 +91,7 @@ var config = {
       // caption: "HXL Logo",
       website: "https://cod.unocha.org/",
       description:
-        "<strong>Overview:</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution, administrative boundaries, infrastructure, and road networks. They are often verified and standardized, making them a reliable foundation for operational planning.<br><br><strong>Use Case:</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>• Population data to assess affected communities.<br>• Administrative boundaries for coordination.<br>• Road networks to optimize transportation of supplies.",
+        "<strong>Overview:</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution, administrative boundaries, infrastructure, and road networks. They are often verified and standardized, making them a reliable foundation for operational planning.<br><br><strong>Use Case:</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>• Population data to assess affected communities.<br>• Administrative boundaries for coordination.",
       location: {
         center: [90.356331, 23.684994],
         zoom: 4,
@@ -118,7 +118,7 @@ var config = {
       website:
         "https://humanitarian.atlassian.net/wiki/spaces/imtoolbox/pages/222265609/P-codes",
       description:
-        "<strong>Overview:</strong> <br>P-codes (Place codes) are unique geographic identification codes, usually represented by combinations of letters and numbers to identify a specific place, point, positional location, or feature on a map or within a database.<br>There is only one P-code per administrative unit.<br><br><strong>Use Case:</strong> <br>The unique ID can be used to differentiate places with the same name.<br>• P-code and names are used in data collection tools (e.g., 3W, RPM).<br>• Used to amalgamate data from different sources.<br>• Used as a dimension for analysis (e.g., geographic severity, priority, etc.).<br>• Can be applied to other datasets so that their geographic location is known if it is a spatial file.",
+        "<strong>Overview:</strong> <br>P-codes (Place codes) are unique geographic identification codes, usually represented by combinations of letters and numbers to identify a specific place, point, positional location, or feature on a map or within a database.<br>There is only one P-code per administrative unit.<br><br><strong>Use Case:</strong> <br>The unique ID can be used to differentiate places with the same name.<br>• P-code and names are used in data collection tools (e.g., 3W, RPM).<br>• Used to aggregate data from different sources.<br>• Used as a dimension for analysis (e.g., geographic severity, priority, etc.).<br>• Can be applied to other datasets so that their geographic location is known if it is a spatial file.",
       location: {
         center: [9.081999, 8.675277],
         zoom: 4,
@@ -175,12 +175,13 @@ var config = {
       id: "case-study",
       alignment: "right",
       hidden: false,
-      title: "Case Study: Palesttine Humanitarian Response",
+      title: "Example Case Study: Palestine Humanitarian Response",
       // image:"images/",
-      image: "images/hxl_method.png",
+      image: "images/case-study-map.png",
       // caption: "HXL Logo",
-      // website: "https://data.humdata.org/group/pse",
-      description: "TBD",
+      website: "https://data.humdata.org/group/pse",
+      description:
+        'For the example case study on November deaths in the Palestine conflict, I used the following data sources: <ul><li><a href="https://data.humdata.org/dataset/palestine-acled-conflict-data" style="color: black;">ACLED Palestine Conflict Data</a></li><li><a href="https://data.humdata.org/dataset/cod-ab-pse" style="color: black;">COD-AB-PSE Dataset</a></li></ul>Example HXL Data: <a href="https://data.humdata.org/dataset/state-of-palestine-refugees" style="color: black;">State of Palestine Refugees Dataset</a>',
       location: {
         center: [-74.297333, 4.570868],
         zoom: 4,
@@ -191,7 +192,12 @@ var config = {
       rotateAnimation: false,
       spinGlobe: false,
       mapInteractive: true,
-      descriptionImages: ["images/pse.png"],
+      descriptionImages: [
+        "images/pse.png",
+        "images/case-study-conflictdata.png",
+        "images/case-study-qgis.png",
+        "images/case_study_vector_join.png",
+      ],
 
       callback: "",
       onChapterEnter: [],
@@ -206,7 +212,7 @@ var config = {
       // caption: "HXL Logo",
       // website: "https://healthsites.io/",
       description:
-        '<strong>Healthsites.io:</strong><br>Healthsites.io is a collaborative platform that aggregates and shares global healthcare location data, improving data availability for disaster response and public health initiatives. <a href="https://healthsites.io/">Healthsites.io</a><br><br><strong>Humanitarian OpenStreetMap Data Model:</strong><br>The Humanitarian OpenStreetMap Data Model, supported by the Humanitarian OpenStreetMap Team (HOT), provides a framework for  structuring openstreetmap data in multiple gis fileformats and attributes to support humanitarian efforts. <a href="https://data.humdata.org/organization/hot">Humanitarian OpenStreetMap Team</a>.  <br> <strong> and perhaps many more .... </strong> ',
+        '<strong>Healthsites.io:</strong><br>Healthsites.io is a collaborative platform that aggregates and shares global healthcare location data, improving data availability for disaster response and public health initiatives. <a href="https://healthsites.io/">Healthsites.io</a><br><br><strong>Humanitarian OpenStreetMap Data Model:</strong><br>The Humanitarian OpenStreetMap Data Model, supported by the Humanitarian OpenStreetMap Team (HOT), provides a framework for  structuring openstreetmap data in multiple gis fileformats and attributes to support humanitarian efforts. <a href="https://data.humdata.org/organization/hot">Humanitarian OpenStreetMap Team</a>.  <br> <strong> Armed Conflict Location & Event Data (ACLED) </strong> <br> Armed Conflict Location & Event Data (ACLED) is a disaggregated data collection, analysis, and crisis mapping initiative. ACLED collects information on the dates, actors, locations, fatalities, and types of all reported political violence and protest events around the world. The ACLED team conducts analysis to describe and explore conflict trends.<br> <strong> and perhaps many more .... </strong> ',
       location: {
         center: [30.802498, 26.820553],
         zoom: 4,
@@ -214,7 +220,11 @@ var config = {
         bearing: 0,
       },
       mapAnimation: "flyTo",
-      descriptionImages: ["images/healthsites.png", "images/hotosm_hdx.png"],
+      descriptionImages: [
+        "images/healthsites.png",
+        "images/hotosm_hdx.png",
+        "images/acled.png",
+      ],
 
       rotateAnimation: false,
       spinGlobe: false,
