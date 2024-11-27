@@ -92,7 +92,7 @@ var config = {
       // caption: "HXL Logo",
       website: "https://cod.unocha.org/",
       description:
-        '<strong>Overview:</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution and administrative boundaries. They are often verified and standardized, making them a reliable foundation for operational planning.<br><br><strong>Use Case:</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>• Population data to assess affected communities.<br>• Administrative boundaries for coordination.<br><a href="https://data.humdata.org/dataset/global-pcodes" style="color:black;">Global Pcode dataset</a>',
+        '<strong>Overview:</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution and administrative boundaries. They are often verified and standardized, making them a reliable foundation for operational planning.<br><br><strong>Use Case:</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>• Population data to assess affected communities.<br>• Administrative boundaries for coordination.<br><a href="https://data.humdata.org/dataset/cod-ps-npl" style="color:black;">Nepal population COD</a><br><a href="https://data.humdata.org/dataset/cod-ab-npl" style="color:black;">Nepal admin boundary COD</a>',
       location: {
         center: [90.356331, 23.684994],
         zoom: 4,
@@ -105,8 +105,9 @@ var config = {
       mapInteractive: true,
       descriptionImages: [
         "images/cod.png",
-        "images/global_pcodes.png",
-        "images/global_pcodes_hdx.png",
+        "images/cod_population_hdx.png",
+        "images/cod_admin_boundary.png",
+        "images/cod_population.png",
       ],
 
       callback: "",
@@ -123,7 +124,7 @@ var config = {
       website:
         "https://humanitarian.atlassian.net/wiki/spaces/imtoolbox/pages/222265609/P-codes",
       description:
-        "<strong>Overview:</strong> <br>P-codes (Place codes) are unique geographic identification codes, usually represented by combinations of letters and numbers to identify a specific place, point, positional location, or feature on a map or within a database.<br>There is only one P-code per administrative unit.<br><br><strong>Use Case:</strong> <br>The unique ID can be used to differentiate places with the same name.<br>• P-code and names are used in data collection tools (e.g., 3W, RPM).<br>• Used to aggregate data from different sources.<br>• Used as a dimension for analysis (e.g., geographic severity, priority, etc.).<br>• Can be applied to other datasets so that their geographic location is known if it is a spatial file.",
+        '<strong>Overview:</strong> <br>P-codes (Place codes) are unique geographic identification codes, usually represented by combinations of letters and numbers to identify a specific place, point, positional location, or feature on a map or within a database.<br>There is only one P-code per administrative unit.<br><br><strong>Use Case:</strong> <br>The unique ID can be used to differentiate places with the same name.<br>• P-code and names are used in data collection tools (e.g., 3W, RPM).<br>• Used to aggregate data from different sources.<br>• Used as a dimension for analysis (e.g., geographic severity, priority, etc.).<br>• Can be applied to other datasets so that their geographic location is known if it is a spatial file.<br><a href="https://data.humdata.org/dataset/global-pcodes" style="color:black;">Global Pcode dataset</a>',
       location: {
         center: [9.081999, 8.675277],
         zoom: 4,
@@ -134,7 +135,11 @@ var config = {
       rotateAnimation: false,
       spinGlobe: false,
       mapInteractive: true,
-      descriptionImages: ["images/pcode_detail.png"],
+      descriptionImages: [
+        "images/pcode_detail.png",
+        "images/global_pcodes.png",
+        "images/global_pcodes_hdx.png",
+      ],
 
       callback: "",
       onChapterEnter: [],
