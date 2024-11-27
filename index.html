@@ -29,6 +29,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/css/lightbox.min.css"
+      integrity="sha512-xtV3HfYNbQXS/1R1jP53KbFcU9WXiSA1RFKzl5hRlJgdOJm4OxHCWYpskm6lN0xp0XtKGpAfVShpbvlFH3MDAA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- Slick JS -->
     <script
@@ -38,6 +45,12 @@
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.min.js"
+      integrity="sha512-KbRFbjA5bwNan6DvPl1ODUolvTTZ/vckssnFhka5cG80JVa5zSlRPCr055xSgU/q6oMIGhZWLhcbgIC0fyw3RQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
 
     <style>
@@ -631,14 +644,19 @@
         if (record.image) {
           var image = new Image();
           image.src = record.image;
-          image.style.maxHeight = "400px"; // Limit height to 250px
-          image.style.maxWidth = "500px"; // Limit height to 250px
+          image.style.maxHeight = "400px";
+          image.style.maxWidth = "500px";
+          image.style.width = "auto";
+          image.style.display = "block";
+          image.style.margin = "0 auto";
+          image.style.objectFit = "contain";
 
-          image.style.width = "auto"; // Maintain natural width
-          image.style.display = "block"; // Makes centering effective
-          image.style.margin = "0 auto"; // Centers the image horizontally
-          image.style.objectFit = "contain"; // Ensures the image fits naturally within the container
-          chapter.appendChild(image);
+          var link = document.createElement("a");
+          link.href = record.image;
+          link.setAttribute("data-lightbox", "gallery");
+
+          link.appendChild(image);
+          chapter.appendChild(link);
         }
 
         // add image caption to chapters if found in config
@@ -703,15 +721,20 @@
             imageWrapper.setAttribute("class", "slider");
 
             record.descriptionImages.forEach(function (imageUrl) {
+              var linkElement = document.createElement("a");
+              linkElement.setAttribute("href", imageUrl);
+              linkElement.setAttribute("data-lightbox", "slider-gallery");
+
               var imgElement = document.createElement("img");
               imgElement.setAttribute("src", imageUrl);
               imgElement.setAttribute("alt", "Description Image");
               imgElement.style.width = "100%";
-              imageWrapper.appendChild(imgElement);
+
+              linkElement.appendChild(imgElement);
+              imageWrapper.appendChild(linkElement);
             });
 
             sliderContainer.appendChild(imageWrapper);
-
             chapter.appendChild(sliderContainer);
 
             $(imageWrapper).slick({
