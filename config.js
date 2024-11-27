@@ -65,6 +65,7 @@ var config = {
         "images/hxl_example.png",
         "images/hxl_chart.png",
         "images/hxl_method.png",
+        "images/ml_for_hxl.png",
         "images/hxl_slider_1.png",
         "images/hxl_slider_2.png",
         "images/hxl_slider_3.png",
@@ -91,7 +92,7 @@ var config = {
       // caption: "HXL Logo",
       website: "https://cod.unocha.org/",
       description:
-        "<strong>Overview:</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution, administrative boundaries, infrastructure, and road networks. They are often verified and standardized, making them a reliable foundation for operational planning.<br><br><strong>Use Case:</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>• Population data to assess affected communities.<br>• Administrative boundaries for coordination.",
+        '<strong>Overview:</strong><br>Common Operational Datasets (CODs) are essential, authoritative datasets curated to support humanitarian response. Managed by UN OCHA, CODs provide stable, standardized data on critical information like population distribution and administrative boundaries. They are often verified and standardized, making them a reliable foundation for operational planning.<br><br><strong>Use Case:</strong><br>CODs are invaluable in a situation like an earthquake that disrupts a densely populated urban area. Humanitarian agencies need reliable data on administrative boundaries, population densities, and key infrastructure to prioritize resources and coordinate response efforts. CODs provide:<br>• Population data to assess affected communities.<br>• Administrative boundaries for coordination.<br><a href="https://data.humdata.org/dataset/global-pcodes" style="color:black;">Global Pcode dataset</a>',
       location: {
         center: [90.356331, 23.684994],
         zoom: 4,
@@ -102,7 +103,11 @@ var config = {
       rotateAnimation: false,
       spinGlobe: false,
       mapInteractive: true,
-      descriptionImages: ["images/cod.png"],
+      descriptionImages: [
+        "images/cod.png",
+        "images/global_pcodes.png",
+        "images/global_pcodes_hdx.png",
+      ],
 
       callback: "",
       onChapterEnter: [],
