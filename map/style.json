@@ -13,7 +13,7 @@
             "id": "background",
             "type": "background",
             "paint": {
-                "background-color": "#D8F2FF"
+                "background-color": "red"
             },
             "filter": [
                 "all"
@@ -28,7 +28,7 @@
             "type": "line",
             "paint": {
                 "line-blur": 0.5,
-                "line-color": "#198EC8",
+                "line-color": "#68707F",
                 "line-width": {
                     "stops": [
                         [
@@ -102,7 +102,7 @@
                         "UKR",
                         "WSM"
                     ],
-                    "#D6C7FF",
+                    "#929DB3",
                     [
                         "AZE",
                         "BGD",
@@ -134,7 +134,7 @@
                         "UZB",
                         "ZMB"
                     ],
-                    "#EBCA8A",
+                    "#c81919",
                     [
                         "AGO",
                         "ASM",

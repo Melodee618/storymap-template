@@ -8,29 +8,30 @@ var config = {
   useCustomLayers: true,
   bookmarks: false,
   chapterReturn: true,
-  title: "Data Standardization in Humanitarian Space",
-  logo: "images/kshitij.png",
+  headerTitle: "15 Years of Community-led Mapping",
+  logo: "",
   subtitle:
-    "Data standardization plays a vital role in humanitarian efforts, enabling efficient coordination and accurate information sharing during crises. This story map highlights key standardization tools—HXL, CODs, and P-codes—and their impact on creating a unified data ecosystem to support rapid and reliable crisis response.",
+    "Short blurb to set the stage for the story, and introduce the main theme.",
   byline: "27 November 2024 : Kshitij Raj Sharma",
-  welcomeImage: "images/welcome.gif",
-  creditLogos: ["images/cde.png", "images/uni-logo.png", "images/zgis.png"],
+  welcomeImage: "",
+  creditLogos: [""],
+  backgroundImage: "images/header-img.png",
   mobileview:
     '<div id="rotate-mobile"><em>For optimal viewing of this storytelling map on mobile, rotate your device to a horizontal orientation.</em><br><br><img src="images/device.png">',
   footer: "Copyright 2024 @ Kshitij Raj Sharma",
   chapters: [
     {
-      id: "why",
+      id: "drive",
       alignment: "left",
       hidden: false,
-      title: "Why?",
-      image: "images/why_data_meme.jpg",
+      title: "When Drive Meets Information",
+      image: "",
 
       description:
-        "Data standardization is essential in the humanitarian field, where <strong> rapid response</strong>, coordination, and information <strong>sharing</strong> are crucial. Humanitarian crises often involve multiple agencies working together to deliver aid, where each organization collects and shares data on population distribution, infrastructure, and resources. Without standardization, data incompatibility and misinterpretation can cause delays and errors in delivering aid to affected communities.",
+        "We live in a world where almost anyone, anywhere can see when disaster strikes around the globe. And most times, with access to this information, comes a feeling of responsibility and wonder—what can I do to help from so far away?",
       location: {
-        center: [83.96851, 28.26689],
-        zoom: 4,
+        center: [0, 0],
+        zoom: 1,
         pitch: 0,
         bearing: 0,
       },
@@ -45,15 +46,15 @@ var config = {
       descriptionImages: [],
     },
     {
-      id: "hxl",
+      id: "drive",
       alignment: "right",
       hidden: false,
-      title: "Humanitarian Exchange Language (HXL)",
-      image: "images/hxl_logo.png",
+      title: "",
+      image: "",
       // caption: "HXL Logo",
-      website: "https://hxlstandard.org/",
+      website: "",
       description:
-        "<strong>Overview:</strong> <br>• Humanitarian Exchange Language (HXL) is a simple standard for tagging and structuring datasets used by humanitarian organizations.<br>• It works with spreadsheet formats like CSV or Excel by adding hashtags with semantic information between headers and data, enabling software to validate, clean, merge, and analyze data.<br>• Example: <br><code>hxl.load('http://example.org/3w.csv', function (dataset) { var region_stats = dataset.count('adm1'); // do something with the stats });</code>.<br><br><strong>Use Case:</strong> <br>• During a major flood displacing thousands, organizations can share data on shelters, hospitals, and populations using HXL tags like <code>#loc</code> (location), <code>#org</code> (organization), and <code>#pop</code> (affected population), enabling quick data alignment across sources.",
+        "This is the sentiment that brought together a small group of innovators who shared a passion for new, free, and open source mapping technologies like OpenStreetMap (OSM), combined with  a desire to use it to solve humanitarian problems.They began brainstorming ways they could use the geospatial data being contributed by volunteers all around the world, for crisis response. The premise was that since they were so far away, they would offer what they had:information (in the form of satellite images), skills (in the form of adding  landscape features like buildings and roads to OSM’s database)Connections (to other open map enthusiasts and humanitarian organizations)",
 
       location: {
         center: [10.451526, 51.165691],

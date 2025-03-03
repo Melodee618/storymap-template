@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Kshitij-StoryMap</title>
+    <title>StoryMap</title>
     <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -124,14 +124,59 @@
       }
 
       #header {
-        margin: 3vh auto;
-        width: 60vw;
+        
+        width: 97vw;
+        height: 100vh;
         padding: 2vh;
         position: relative;
         z-index: 5;
         text-align: center;
         background-color: "pink";
-        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Ensure the overlay does not overflow */
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+        z-index: -2; /* Ensure the overlay is behind the text */
+      }
+
+      .text-container {
+        position: relative;
+        z-index: 3; /* Ensure the text is above the overlay */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      .header-title {
+        color: #ffffff; /* Sets the color of the title */
+        font-size: 3em; /* Adjust the font size as needed */
+        text-align: center;
+        margin: 0; /* Remove default margin */
+      }
+
+      
+      .header-subtitle {
+        color: #fafafa; /* Sets the color of the subtitle */
+        font-size: 1.5em; /* Adjust as needed */
+        margin: 10px 0; /* Adjust as needed */
+      }
+
+     .header-byline {
+       color: #d73f3f; /* Sets the color of the byline */
+       font-size: 1em; /* Adjust the font size as needed */
+       text-align: center;
+       margin: 0; /* Remove default margin */
       }
 
       #header h1,
@@ -311,10 +356,31 @@
       }
       nav {
         background-color: #f5f5f5;
-        padding: 20px 0;
+        padding: 10px 0;
         position: sticky;
         top: 0;
         z-index: 100;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-logo {
+        margin-left: 20px;
+        height: 40px; /* Adjust as needed */
+      }
+
+      .nav-divider {
+        height: 40px; /* Match the height of the logo */
+        border-left: 1px solid #ccc; /* Adjust the color and width as needed */
+        margin: 0 20px; /* Adjust the spacing as needed */
+      }
+
+      .nav-arrow {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0 10px;
       }
 
       nav ul {
@@ -323,15 +389,26 @@
         list-style: none;
         margin: 0;
         padding: 0;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        flex-grow: 1;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+
+      nav ul::-webkit-scrollbar {
+        display: none;
       }
 
       nav li {
+   
         margin: 0 20px;
       }
 
       nav a {
         color: #545454 !important;
         text-decoration: none;
+        font-size: 12px;
         font-weight: 500 !important;
         padding-bottom: 5px;
         transition: color 0.3s ease;
@@ -339,7 +416,7 @@
       }
 
       nav a.active {
-        color: #06540fc1 !important;
+        color: #540606e6 !important;
         font-weight: bold !important;
         border-bottom: 2px solid #000;
         padding-bottom: 5px;
@@ -462,7 +539,13 @@
 
   <body>
     <nav id="main-nav">
-      <ul></ul>
+     <img src="images/hot-logo-png.png" alt="Logo" class="nav-logo">
+     <div class="nav-divider"></div>
+      <!-- <button class="nav-arrow left-arrow">&lt;</button> -->
+      <ul>
+        <!-- Navigation links will be dynamically added here -->
+      </ul>
+      <!-- <button class="nav-arrow right-arrow">&gt;</button> -->
     </nav>
     <div id="map"></div>
 
@@ -529,6 +612,7 @@
       }
 
       function updateActiveNav(chapterId) {
+        console.log("Updating active nav for chapterId:", chapterId);
         const navLinks = document.querySelectorAll("#main-nav a");
         navLinks.forEach((link) => {
           link.classList.remove("active");
@@ -537,10 +621,14 @@
         const activeLink = document.querySelector(
           `#main-nav a[href="#${chapterId}"]`
         );
+        console.log("Active link found:", activeLink);
         if (activeLink) {
           activeLink.classList.add("active");
         }
       }
+      if (config.chapters.length > 0) {
+      updateActiveNav(config.chapters[0].id);
+    }
 
       // add navigation control for interactive chapters
       const navigation = new maplibregl.NavigationControl();
@@ -583,6 +671,40 @@
         titleText.innerText = config.title;
         header.appendChild(titleText);
       }
+    
+      // Set the background image if it exists in the config
+      if (config.backgroundImage) {
+        header.style.backgroundImage = `url(${config.backgroundImage})`;
+        header.style.backgroundSize = 'cover'; // Adjusts the background image to cover the entire container
+        header.style.backgroundPosition = 'center'; // Centers the background image
+        header.style.backgroundRepeat = 'no-repeat'; // Prevents the background image from repeating
+      }
+    
+      // Create an overlay to reduce brightness
+      var overlay = document.createElement("div");
+      overlay.className = "overlay";
+      header.appendChild(overlay);
+
+      // Create a container for the title and byline
+      var textContainer = document.createElement("div");
+      textContainer.className = "text-container";  
+
+      if (config.headerTitle) {
+          var titleText = document.createElement("h1");
+          titleText.innerText = config.headerTitle;
+          titleText.className = "header-title"; // Add a class to the title for styling
+          textContainer.appendChild(titleText);
+        }
+
+      if (config.title) {
+        var titleText = document.createElement("h1");
+        titleText.innerText = config.title;
+        header.appendChild(titleText);
+      }
+    
+      // Append the header to the body or a specific container
+      document.body.appendChild(header);
+     
 
       // add logo if found in config
       if (config.logo) {
@@ -594,9 +716,10 @@
       }
 
       if (config.subtitle) {
-        var subtitleText = document.createElement("p");
+        const subtitleText = document.createElement("p");
         subtitleText.innerText = config.subtitle;
-        header.appendChild(subtitleText);
+        subtitleText.className = "header-subtitle";
+        textContainer.appendChild(subtitleText);
       }
       if (config.welcomeImage) {
         var welcomeimage = new Image();
@@ -622,8 +745,11 @@
       if (config.byline) {
         var bylineText = document.createElement("p");
         bylineText.innerText = config.byline;
-        header.appendChild(bylineText);
+        bylineText.className = "header-byline"; // Add a class to the byline for styling
+        textContainer.appendChild(bylineText)
       }
+
+      header.appendChild(textContainer);
 
       if (header.innerText.length > 0) {
         header.classList.add(config.theme);
@@ -805,21 +931,47 @@
         footerBookmarks.innerHTML = bookmarksText;
         footer.appendChild(footerBookmarks);
       }
-      // Get the navigation container
-      const navContainer = document.getElementById("main-nav");
-      const navList = navContainer.querySelector("ul");
 
-      // Loop through the chapters and add navigation links
-      config.chapters.forEach((chapter) => {
-        if (chapter.title) {
-          const navItem = document.createElement("li");
-          const navLink = document.createElement("a");
-          navLink.href = `#${chapter.id}`;
-          navLink.textContent = chapter.title;
-          navItem.appendChild(navLink);
-          navList.appendChild(navItem);
-        }
-      });
+      // Get the navigation container
+        document.addEventListener("DOMContentLoaded", function () {
+          const navContainer = document.getElementById("main-nav");
+          const navList = navContainer.querySelector("ul");
+          const leftArrow = navContainer.querySelector(".left-arrow");
+          const rightArrow = navContainer.querySelector(".right-arrow");
+
+          console.log("navContainer:", navContainer);
+          console.log("navList:", navList);
+          console.log("leftArrow:", leftArrow);
+          console.log("rightArrow:", rightArrow);
+
+          // Loop through the chapters and add navigation links
+          config.chapters.forEach((chapter) => {
+            if (chapter.title) {
+              const navItem = document.createElement("li");
+              const navLink = document.createElement("a");
+              navLink.href = `#${chapter.id}`;
+              navLink.textContent = chapter.title;
+              navItem.appendChild(navLink);
+              navList.appendChild(navItem);
+            }
+          });
+
+          leftArrow.addEventListener("click", () => {
+            console.log("Left arrow clicked");
+            const maxScrollLeft = navList.scrollWidth - navList.clientWidth;
+            const currentScrollLeft = navList.scrollLeft;
+            const newScrollLeft = Math.max(currentScrollLeft - 200, 0);
+            navList.scrollTo({ left: newScrollLeft, behavior: "smooth" });
+          });
+
+          rightArrow.addEventListener("click", () => {
+            console.log("Right arrow clicked");
+            const maxScrollLeft = navList.scrollWidth - navList.clientWidth;
+            const currentScrollLeft = navList.scrollLeft;
+            const newScrollLeft = Math.min(currentScrollLeft + 200, maxScrollLeft);
+            navList.scrollTo({ left: newScrollLeft, behavior: "smooth" });
+          });
+        });
 
       // add prefix content for mobile view
       if (config.mobileview) {
