@@ -13,7 +13,7 @@
             "id": "background",
             "type": "background",
             "paint": {
-                "background-color": "red"
+                "background-color": "#F0EFEF"
             },
             "filter": [
                 "all"
@@ -134,7 +134,7 @@
                         "UZB",
                         "ZMB"
                     ],
-                    "#c81919",
+                    "#E1E0E0",
                     [
                         "AGO",
                         "ASM",
@@ -169,7 +169,7 @@
                         "VIR",
                         "VUT"
                     ],
-                    "#C1E599",
+                    "#E1E0E0",
                     [
                         "ARE",
                         "ARG",

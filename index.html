@@ -551,7 +551,7 @@
 
     <div id="mapInset"></div>
     <div id="story"></div>
-    <div id="timer-container">
+    <!-- <div id="timer-container">
       <div id="time-display">00:00</div>
       <button id="play-button" class="timer-button play-button">
         <i class="fas fa-play"></i>
@@ -570,7 +570,7 @@
       >
         <i class="fas fa-stop"></i>
       </button>
-    </div>
+    </div> -->
 
     <script src="./config.js"></script>
     <script src="./sources.js"></script>
@@ -628,7 +628,7 @@
       }
       if (config.chapters.length > 0) {
       updateActiveNav(config.chapters[0].id);
-    }
+      }
 
       // add navigation control for interactive chapters
       const navigation = new maplibregl.NavigationControl();
